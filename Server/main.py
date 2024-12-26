@@ -1,31 +1,15 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS
+from flask_cors import CORS  # Pour gérer les requêtes CORS depuis React
 
-# Initialize the Flask application
 app = Flask(__name__)
-CORS(app)  # Enable CORS to allow communication with the React application
+CORS(app)  # Permet à React d'effectuer des requêtes vers Flask
 
-# Define a route for the home page
-@app.route('/')
-def home():
-    return "Welcome to the Flask API for React Integration!"
-
-# Example route to handle user data
-@app.route('/api/user', methods=['POST'])
-def create_user():
+@app.route('/api/analyze', methods=['POST'])
+def analyze_image():
+    # Traitement de l'image ou des données
     data = request.get_json()
-    return jsonify({"message": "User data received!", "user": data}), 201
+    result = {"message": "Image analysée", "status": "success"}
+    return jsonify(result)
 
-# Example route to fetch some data
-@app.route('/api/data', methods=['GET'])
-def get_data():
-    sample_data = {
-        "id": 1,
-        "name": "Sample Data",
-        "description": "This is an example data fetched from Flask API."
-    }
-    return jsonify(sample_data)
-
-# Start the Flask application
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
