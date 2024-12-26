@@ -1,0 +1,12 @@
+# Node.js dependencies
+Client/Client/node_modules/
+
+# Python dependencies
+Server/venv/
+
+# System files
+*.pyc
+*.pyo
+*.pyd
+.env
+.DS_Store
